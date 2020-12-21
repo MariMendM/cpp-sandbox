@@ -1,0 +1,12 @@
+
+CONTENT:
+	FilesAndStream.cpp
+	input.txt
+	output.txt
+	
+TESTING:
+	files
+	streams
+	#not much theory!
+
+Reaching END OF FILE...
