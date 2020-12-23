@@ -1,0 +1,5 @@
+real reais 100
+50centavos 50centavos 50
+25centavos 25centavos 25
+10centavos 10centavos 10
+5centavos 5centavos 5
