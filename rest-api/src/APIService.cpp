@@ -30,20 +30,29 @@ void APIService::handleGET(web::http::http_request message) {
 		/* handle whatever is necessary... */
 		
 		if (true)
-			message.reply(web::http::status_codes::OK, assemblyResponse(response_codes::code::SUCCESS, "Yeah! Nicely done handling GET for resourceA!");
+			message.reply(web::http::status_codes::OK, assemblyResponse(response_codes::code::SUCCESS, "Yeah! Nicely done handling GET for resourceA!"));
 		else
-			message.reply(web::http::status_codes::OK, assemblyResponse(response_codes::code::ERROR, "Oops! Handling GET for resourceA was troubling...");
+			message.reply(web::http::status_codes::OK, assemblyResponse(response_codes::code::ERROR, "Oops! Handling GET for resourceA was troubling..."));
 	}
 	else if (path == "/api/resource-a/subresource") {
 		
 		/* handle whatever is necessary... */
 		
-		message.reply(web::http::status_codes::OK, assemblyResponse(response_codes::code::SUCCESS, "Yeah! Nicely done handling GET for subresource!");
+		message.reply(web::http::status_codes::OK, assemblyResponse(response_codes::code::SUCCESS, "Yeah! Nicely done handling GET for subresource!"));
 	}
 	else
 		message.reply(web::http::status_codes::NotFound, assemblyResponse(response_codes::code::ERROR, "path not found"));
 }
 
+void APIService::handleHEAD(web::http::http_request message) { /* Implement when necessary */}
+void APIService::handlePUT(web::http::http_request message) { /* Implement when necessary */}
+void APIService::handlePOST(web::http::http_request message) { /* Implement when necessary */}
+void APIService::handleDELETE(web::http::http_request message) { /* Implement when necessary */}
+void APIService::handlePATCH(web::http::http_request message) { /* Implement when necessary */}
+void APIService::handleOPTIONS(web::http::http_request message) { /* Implement when necessary */}
+void APIService::handleTRACE(web::http::http_request message) { /* Implement when necessary */}
+void APIService::handleCONNECT(web::http::http_request message) { /* Implement when necessary */}
+		
 void APIService::notHandleMethod(web::http::http_request message, web::http::method & method) {
 	message.reply(web::http::status_codes::NotImplemented, assemblyResponse(response_codes::code::ERROR, method + " not implemented"));
 }
