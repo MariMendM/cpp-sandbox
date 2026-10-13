@@ -8,7 +8,7 @@ CC := g++
 CFLAGS := -O3 -Wall
 
 # Linking flags
-LFLAGS := -lboost_system -lboost_filesystem -ldl -lcpprest -lpthread -lcrypto
+LFLAGS := -lboost_filesystem -ldl -lcpprest -lpthread -lcrypto
 
 DIR_SRC := src
 DIR_BUILD := build

@@ -24,9 +24,15 @@ std::string APIController::getEndpoint() const {
 }
 
 std::string APIController::getHostIP() {
-	boost::asio::io_service ioService;
+	boost::asio::io_context ioService;
 	boost::asio::ip::tcp::resolver resolver(ioService);
-	return resolver.resolve(boost::asio::ip::host_name(), "")->endpoint().address().to_string();
+	boost::asio::ip::tcp::resolver::results_type endpoints = resolver.resolve(boost::asio::ip::host_name(), "");
+	boost::asio::ip::tcp::resolver::results_type::iterator iteratorEndpoints = endpoints.begin();
+	boost::asio::ip::tcp::resolver::results_type::iterator iteratorEndpointsEnd = endpoints.end();
+	boost::asio::ip::tcp::endpoint endpoint;
+	if (iteratorEndpoints != iteratorEndpointsEnd)
+		endpoint = *iteratorEndpoints++;
+	return endpoint.address().to_string();
 }
 
 pplx::task<void> APIController::open() {
