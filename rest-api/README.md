@@ -73,7 +73,7 @@ A makefile is included to compile and link all classes included:
 
 Installing requirements for build with makefile:
 ```
-$ install apt g++ make -y
+$ apt install g++ make -y
 ```
 
 Executing makefile:
@@ -88,12 +88,12 @@ $ make
 
 To run it in default port 8080:
 ```
-$ ./bin/rest.app
+$ ./bin/restapi.app
 ```
 
 To run it in any other port:
 ```
-$ ./bin/rest.app <port>
+$ ./bin/restapi.app <port>
 ```
 
 ### API calls
