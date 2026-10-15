@@ -8,7 +8,9 @@ Simple REST API developed in C++ to return json responses. The API contains the 
 ## Repo files overview
 
 * Folder dependencies:
-  * Shell script that can be used to install the supporting libraries for API (it considers debian-based distros, with APT pre-installed)
+  * Shell scripts that can be used to install/uninstall the supporting libraries for API (it considers debian-based distros, with APT pre-installed)
+  * There is a set of scripts to handle depencies for development and build (ones named *_build.sh);
+  * There is a set of scripts to handle runtime dependecies (ones named *_runtime.sh), once that static compilation was not pursuit and dependencies must be installed to run the app;
 * Folder documents:
   * UML and other diagrams documenting the development
     <details><summary>UML class diagram</summary><img src="documents/uml-class-diagram.png"></details>
@@ -18,10 +20,10 @@ Simple REST API developed in C++ to return json responses. The API contains the 
     * Abstract class that defines the handler methods to be implemented for each HTTP Method
   * Class [APIController](src/APIController.h):
     * Implements the very basic functions around the listener portion of the API (open/close and endpoint configuration)
-	* It also defines the virtual method that shall be implemented by service to connect HTTP Methods handlers (the ones from APIMethods) to the listener
+	  * It also defines the virtual method that shall be implemented by service to connect HTTP Methods handlers (the ones from APIMethods) to the listener
   * Class [APIService](src/APIService.h):
     * Implements handler methods inherited from APIMethods (all the logic of the service: route paths, deals with requests, assemble responses etc)
-	* Connects handler methods implemented into the listener of APIController
+	  * Connects handler methods implemented into the listener of APIController
   * Class [include/Logger](src/include/Logger.h):
     * Singleton class for basic logging
   * Class [include/DateTimeUtils](src/include/DateTimeUtils.h):
@@ -42,26 +44,28 @@ The supporting libraries can be installed using shell script included in 'depend
   * [GitHub page](https://github.com/microsoft/cpprestsdk)
   * [Main page](https://microsoft.github.io/cpprestsdk/index.html)
   * Linking flags for g++: -lcpprest
-  * Requirement: **Dynamic Loaded (DL) Libraries**, to use libraries loaded during runtime
-    * [Main page](https://tldp.org/HOWTO/Program-Library-HOWTO/dl-libraries.html)
-    * Linking flags for g++: -ldl
-  * Requirement: **Pthread** library, to support pplx tasks
-    * Linking flags for g++: -lpthread
 * **Boost C++ Libraries**: portable C++ widely used source libraries
-  * [Main page](https://www.boost.org/)
-  * Linking flags for g++:
-    * -lboost_system (supporting API classes and DateTimeUtils)
-    * -lboost_filesystem (supporting Logger)
-  * Requirement: **Crypto++ Library**
+    * [Main page](https://www.boost.org/)
+    * Linking flags for g++: -lboost_filesystem
+* **Crypto++ Library**
     * [Main page](https://www.cryptopp.com/)
     * Linking flags for g++: -lcrypto
 
-Installing dependencies:
+Installing 'build' dependencies, used for developing and compiling the code:
 ```
 $ cd <app-root-folder>
-$ chmod +x dependencies/install_dependencies.sh
-$ ./dependencies/install_dependencies.sh
+$ chmod +x dependencies/install_dependencies_build.sh
+$ ./dependencies/install_dependencies_build.sh
 ```
+
+Installing 'runtime' dependencies, used for running the compiled code (ensure to uninstall 'build' ones first):
+```
+$ cd <app-root-folder>
+$ chmod +x dependencies/install_dependencies_runtime.sh
+$ ./dependencies/install_dependencies_runtime.sh
+```
+
+NOTE: The compiled binary is not static linked, so dependencies have to be installed before running it. The 'build' dependencies work for runtime too, but for deployment, the lighter 'runtime' packages are more suitable (like, in a container, for example). Both dependencies "types" have their own uninstall script in the folder.
 
 ### Make
 
@@ -80,6 +84,12 @@ Executing makefile:
 ```
 $ cd <app-makefile-folder>
 $ make
+```
+
+Executing clean:
+```
+$ cd <app-makefile-folder>
+$ make clean
 ```
 
 ## How to run
