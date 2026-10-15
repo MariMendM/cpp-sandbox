@@ -20,10 +20,10 @@ Simple REST API developed in C++ to return json responses. The API contains the 
     * Abstract class that defines the handler methods to be implemented for each HTTP Method
   * Class [APIController](src/APIController.h):
     * Implements the very basic functions around the listener portion of the API (open/close and endpoint configuration)
-	  * It also defines the virtual method that shall be implemented by service to connect HTTP Methods handlers (the ones from APIMethods) to the listener
+    * It also defines the virtual method that shall be implemented by service to connect HTTP Methods handlers (the ones from APIMethods) to the listener
   * Class [APIService](src/APIService.h):
     * Implements handler methods inherited from APIMethods (all the logic of the service: route paths, deals with requests, assemble responses etc)
-	  * Connects handler methods implemented into the listener of APIController
+    * Connects handler methods implemented into the listener of APIController
   * Class [include/Logger](src/include/Logger.h):
     * Singleton class for basic logging
   * Class [include/DateTimeUtils](src/include/DateTimeUtils.h):
@@ -45,11 +45,11 @@ The supporting libraries can be installed using shell script included in 'depend
   * [Main page](https://microsoft.github.io/cpprestsdk/index.html)
   * Linking flags for g++: -lcpprest
 * **Boost C++ Libraries**: portable C++ widely used source libraries
-    * [Main page](https://www.boost.org/)
-    * Linking flags for g++: -lboost_filesystem
+  * [Main page](https://www.boost.org/)
+  * Linking flags for g++: -lboost_filesystem
 * **Crypto++ Library**
-    * [Main page](https://www.cryptopp.com/)
-    * Linking flags for g++: -lcrypto
+  * [Main page](https://www.cryptopp.com/)
+  * Linking flags for g++: -lcrypto
 
 Installing 'build' dependencies, used for developing and compiling the code:
 ```
